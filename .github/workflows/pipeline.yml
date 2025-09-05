@@ -65,8 +65,21 @@ jobs:
 
 # we don't have a release 
 
-      - name: Upload artifact
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with: 
           path: DevOpsDaysTasks
           name: DevOpsDaysTasks
+
+# Create ZIP
+      - name: Create ZIP
+        if: ${{ inputs.version }}
+        run: Compress-Archive -Path DevOpsDaysTasks -DestinationPath DevOpsDaysTasks.zip
+
+      - name: GitHub release
+        uses: softprops/actions-gh-release@v4
+        if: ${{ inputs.version }}
+        with: 
+          name: DevOpsDaysTasks
+          tag_name: ${{ inputs.version }}
+          files: DevOpsDaysTasks.zip
