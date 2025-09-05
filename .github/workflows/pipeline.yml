@@ -55,11 +55,10 @@ jobs:
 
 # Problem Cert and Password
       - name: Create Cert
-        run:  |
+        run: |
           $base64 = "${{ secrets.SIGN_CERTIFICATE_PFX_B64 }}"
           $content = [System.Convert]::FromBase64String($base64)
           Set-Content ${{ env.CERT_NAME }} -Value $content -AsByteStream
-
 
       - name: Sign Release
         run: .\scripts\sign.ps1 .\DevOpsDaysTasks\DevOpsDaysTasks.UI.exe -PfxFile ${{ env.CERT_NAME }} -PfxPassword Password
