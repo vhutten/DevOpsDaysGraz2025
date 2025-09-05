@@ -17,6 +17,25 @@ jobs:
      
       - name: Run Core.Test
         run: dotnet test .\src\DevOpsDaysTasks.Core.Tests
- 
+    
+      - name: Run IntegrationTests
+        run: dotnet test .\src\DevOpsDaysTasks.IntegrationTests
+
+      - name: Publish Build
+        run: dotnet Publish -c Release src/DevOpsDaysTasks.UI\ -o DevOpsDaysTasks /p:Version=1.0.0 /p:VersionName=VolCat
+
+      - name: Copy Template
+        run: |
+          mkdir DevOpsDaysTasks\Templates
+          cp workshop_material/default-default-tasks.xml DevOpsDaysTasks/Templates
+        
+      - name: Copy Template
+        run: |
+          mkdir DevOpsDaysTasks\Help
+          cp workshop_material/default-default-tasks.xml DevOpsDaysTasks/Help
+
+      - name: Sign Release
+        run: .\scripts\sign.ps1 .\DevOpsDaysTasks\DevOpsDaysTasks.UI.exe _PfxFile .\workshop_material\devopsday_tasks_codesign.pfx -PfxPassword Password
+
       - name: Hello Pipeline  
         run: echo "Hello pipeline"
