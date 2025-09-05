@@ -43,7 +43,7 @@ jobs:
 # we don't have a release 
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4with: 
+        uses: actions/upload-artifact@v4with
         with: 
           path: DevOpsDaysTasks
           name: DevOpsDaysTasks
