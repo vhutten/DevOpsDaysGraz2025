@@ -29,17 +29,21 @@ jobs:
       - name: Copy Template
         run: |
           mkdir DevOpsDaysTasks\Templates
-          cp workshop_material/default-default-tasks.xml DevOpsDaysTasks/Templates
+          cp workshop_material/default-tasks.xml DevOpsDaysTasks/Templates
         
       - name: Copy Template
         run: |
           mkdir DevOpsDaysTasks\Help
-          cp workshop_material/default-default-tasks.xml DevOpsDaysTasks/Help
+          cp workshop_material/default-tasks.xml DevOpsDaysTasks/Help
 
 # Problem Cert and PAssword
       - name: Sign Release
         run: .\scripts\sign.ps1 .\DevOpsDaysTasks\DevOpsDaysTasks.UI.exe _PfxFile .\workshop_material\devopsday_tasks_codesign.pfx -PfxPassword Password
 
-      - name: Hello Pipeline  
-        run: echo "Hello pipeline"
 # we don't have a release 
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4with: 
+        with: 
+          path: DevOpsDaysTasks
+          name: DevOpsDaysTasks
