@@ -77,7 +77,7 @@ jobs:
         run: Compress-Archive -Path DevOpsDaysTasks -DestinationPath DevOpsDaysTasks.zip
 
       - name: GitHub release
-        uses: softprops/actions-gh-release@v4
+        uses: softprops/actions-gh-release@v2
         if: ${{ inputs.version }}
         with: 
           name: DevOpsDaysTasks
