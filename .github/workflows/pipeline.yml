@@ -21,9 +21,11 @@ jobs:
       - name: Run IntegrationTests
         run: dotnet test .\src\DevOpsDaysTasks.IntegrationTests
 
+# Problem: Hardcoded Release Version
       - name: Publish Build
-        run: dotnet Publish -c Release src/DevOpsDaysTasks.UI\ -o DevOpsDaysTasks /p:Version=1.0.0 /p:VersionName=VolCat
+        run: dotnet publish -c Release src\DevOpsDaysTasks.UI\ -o DevOpsDaysTasks /p:Version=1.0.0 /p:VersionName=VolCat
 
+# Problem: we don't want to use the workshop folder
       - name: Copy Template
         run: |
           mkdir DevOpsDaysTasks\Templates
@@ -34,8 +36,10 @@ jobs:
           mkdir DevOpsDaysTasks\Help
           cp workshop_material/default-default-tasks.xml DevOpsDaysTasks/Help
 
+# Problem Cert and PAssword
       - name: Sign Release
         run: .\scripts\sign.ps1 .\DevOpsDaysTasks\DevOpsDaysTasks.UI.exe _PfxFile .\workshop_material\devopsday_tasks_codesign.pfx -PfxPassword Password
 
       - name: Hello Pipeline  
         run: echo "Hello pipeline"
+# we don't have a release 
