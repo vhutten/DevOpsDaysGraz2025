@@ -3,6 +3,7 @@ name: Release Pipeline
 on:
   push: {}
 
+
 jobs:
   release-pipeline:
     name: Release Pipeline
@@ -32,7 +33,7 @@ jobs:
       - name: Checkout external files
         uses: actions/checkout@v4
         with: 
-          repository: martinzimmermann/DevOpsDaysGraz-2025-ExternalFiles
+          repository: martinzimmermann/DevOpsDaysGraz2025-ExternalFiles
           path: ExternalFiles
 
       - name: Copy Template
