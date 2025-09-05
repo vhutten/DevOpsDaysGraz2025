@@ -5,18 +5,18 @@ on:
 
 jobs:
   release-pipeline:
-  name: Release Pipeline\
-  runs-on: windows-latest
-  steps:
-    - uses: actions/checkout@v4
+   name: Release Pipeline\
+   runs-on: windows-latest
+   steps:
+     - uses: actions/checkout@v4
 
-    - name: Setup Dotnet tools
-      uses: actions\setup-dotnet@v4
-      with:
-        dotnet-version: '8.0.x'
+     - name: Setup Dotnet tools
+       uses: actions\setup-dotnet@v4
+       with:
+         dotnet-version: '8.0.x'
     
-    - name: Run Core.Test
-      run: dotnet test .\src\DevOpsDaysTasks.Core.Tests
+     - name: Run Core.Test
+       run: dotnet test .\src\DevOpsDaysTasks.Core.Tests
 
-    - name: Hello Pipeline  
-      run: echo "Hello pipeline"
+     - name: Hello Pipeline  
+       run: echo "Hello pipeline"
