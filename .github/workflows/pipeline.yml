@@ -39,11 +39,11 @@ jobs:
           mkdir DevOpsDaysTasks\Help
           cp workshop_material/Help.pdf DevOpsDaysTasks/Help
 
-# Problem Cert and PAssword
+# Problem Cert and Password
       - name: Create Cert
         run:  |
           $base64 = "${{ secrets.SIGN_CERTIFICATE_PFX_B64 }}"
-          $content = [Syste.Cnvert]::FromBase64String($base64)
+          $content = [System.Convert]::FromBase64String($base64)
           Set-Content ${{ env.CERT_NAME }} -Value $content -AsByteStream
 
 
